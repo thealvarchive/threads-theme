@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Threads</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <symbol id="icon-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z" /></symbol>
+        <symbol id="icon-compose" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></symbol>
+        <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="7.3" /><path d="m16.2 16.2 4.3 4.3" /></symbol>
+        <symbol id="icon-message" viewBox="0 0 24 24"><path d="M20.5 11.3a8.6 8.6 0 0 1-9 8.2 9.7 9.7 0 0 1-4-.8L3 20l1.4-3.7a7.7 7.7 0 0 1-2-5c0-4.5 4-8.2 9-8.2s9.1 3.7 9.1 8.2Z" /></symbol>
+        <symbol id="icon-activity" viewBox="0 0 24 24"><path d="M20.8 8.8c0 4.2-8.8 10-8.8 10s-8.8-5.8-8.8-10A4.7 4.7 0 0 1 12 6.4a4.7 4.7 0 0 1 8.8 2.4Z" /></symbol>
+        <symbol id="icon-profile" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" /><path d="M4.5 21a7.5 7.5 0 0 1 15 0" /></symbol>
+        <symbol id="icon-insight" viewBox="0 0 24 24"><path d="M4 20V10h4v10M10 20V4h4v16M16 20v-7h4v7M3 20h18" /></symbol>
+        <symbol id="icon-heart" viewBox="0 0 24 24"><path d="M20.8 8.8c0 4.2-8.8 10-8.8 10s-8.8-5.8-8.8-10A4.7 4.7 0 0 1 12 6.4a4.7 4.7 0 0 1 8.8 2.4Z" /></symbol>
+        <symbol id="icon-repost" viewBox="0 0 24 24"><path d="m17 2 4 4-4 4M3 11V9a3 3 0 0 1 3-3h15M7 22l-4-4 4-4M21 13v2a3 3 0 0 1-3 3H3" /></symbol>
+        <symbol id="icon-share" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9" /><path d="M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5" /></symbol>
+        <symbol id="icon-more" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><circle cx="8" cy="12" r="0.8" fill="currentColor" stroke="none" /><circle cx="12" cy="12" r="0.8" fill="currentColor" stroke="none" /><circle cx="16" cy="12" r="0.8" fill="currentColor" stroke="none" /></symbol>
+    </svg>
+    <div class="app-container">
+        <aside class="feed">
+            <div class="sidebar__logo">
+            </div>
+            <nav class="sidebar__nav">
+                <ul class="sidebar__menu">
+                    <li class="sidebar__item--active"><svg class="sidebar__icon"><use href="#icon-home" /></svg>Untuk Anda</li>
+                    <li class="sidebar__item"><svg class="sidebar__icon"><use href="#icon-compose" /></svg>Utas baru</li>
+                    <li class="sidebar__item"><svg class="sidebar__icon"><use href="#icon-search" /></svg>Cari</li>
+                    <li class="sidebar__item"><svg class="sidebar__icon"><use href="#icon-message" /></svg>Pesan</li>
+                    <li class="sidebar__item"><svg class="sidebar__icon"><use href="#icon-activity" /></svg>Aktivitas</li>
+                    <li class="sidebar__item"><svg class="sidebar__icon"><use href="#icon-profile" /></svg>Profil</li>
+                    <li class="sidebar__item"><svg class="sidebar__icon"><use href="#icon-insight" /></svg>Insight</li>
+                </ul>
+            </nav>
+
+            <div class="sidebar__feeds">
+                <span class="sidebar__feeds-title">
+                    <ul class="sidebar__feeds-list">
+                        <li class="sidebar__feeds-item">Following</li>
+                        <li class="sidebar__feeds-item">Tersimpan</li>
+                        <li class="sidebar__feeds-item">Disukai</li>
+                        <li class="sidebar__feeds-item">Ghost posts</li>
+                        <li class="sidebar__feeds-item">Arsip</li>
+                    </ul>
+                </span>
+            </div>
+        </aside>
+
+        <main class="feed">
+            <header class="feed__header">
+                <h1 class="feed__title">Untuk Anda</h1>
+                <button class="feed__menu" aria-label="Menu lainnya"><svg><use href="#icon-more" /></svg></button>
+            </header>
+
+            <div class="feed__panel">
+                <div class="feed__panel-scroll">
+                    <div class="feed__panel-content">
+            <div class="thread__compose">
+                <div class="thread__compose-avatar">Avatar</div>
+                <input type="text" class="thread__compose-input" placeholder="Apa yang baru?">
+                <button class="thread__compose-button">Kirim</button>
+            </div>
+            
+            <div class="feed__content">
+                <div class="feed__slider">
+                    <article class="card">
+                        <header class="card__header">
+                            <div class="card__user-info">
+                                <div class="card__avatar">Avatar</div>
+                                <div class="card__meta">
+                                    <span class="card__username">Alifandra</span>
+                                    <span class="card__time">20h</span>
+                                </div>
+                            </div>
+                        </header>
+
+                        <div class="card__body">
+                            <p class="card__text">Iya juga.</p>
+                            <img src="images/meow.jpg" alt="media_1" class="card__media">
+                        </div>
+
+                        <footer class="card__footer">
+                            <div class="card__actions">
+                                <button class="card__action-btn--like" aria-label="Suka"><svg><use href="#icon-heart" /></svg></button>
+                                <button class="card__action-btn--comment" aria-label="Balas"><svg><use href="#icon-message" /></svg></button>
+                                <button class="card__action-btn--repost" aria-label="Repost"><svg><use href="#icon-repost" /></svg></button>
+                                <button class="card__action-btn--share" aria-label="Bagikan"><svg><use href="#icon-share" /></svg></button>
+                            </div>
+                        </footer>
+                    </article>
+                    
+                    <article class="card">
+                        <header class="card__header">
+                            <div class="card__user-info">
+                                <div class="card__avatar">Avatar</div>
+                                <div class="card__meta">
+                                    <span class="card__username">Alifandra</span>
+                                    <span class="card__time">20h</span>
+                                </div>
+                            </div>
+                        </header>
+
+                        <div class="card__body">
+                            <p class="card__text">Rekomendasi buku bacaan😍👌</p>
+                            <div class="card__gallery">
+                                <img src="images/fufufafa.jpg" alt="media_1" class="card__media">
+                                <img src="images/wowo.jpg" alt="media_1" class="card__media">
+                            </div>
+                        </div>
+
+                        <footer class="card__footer">
+                            <div class="card__actions">
+                                <button class="card__action-btn--like" aria-label="Suka"><svg><use href="#icon-heart" /></svg></button>
+                                <button class="card__action-btn--comment" aria-label="Balas"><svg><use href="#icon-message" /></svg></button>
+                                <button class="card__action-btn--repost" aria-label="Repost"><svg><use href="#icon-repost" /></svg></button>
+                                <button class="card__action-btn--share" aria-label="Bagikan"><svg><use href="#icon-share" /></svg></button>
+                            </div>
+                        </footer>
+                    </article>
+
+                    <article class="card">
+                        <header class="card__header">
+                            <div class="card__user-info">
+                                <div class="card__avatar">Avatar</div>
+                                <div class="card__meta">
+                                    <span class="card__username">Alifandra</span>
+                                    <span class="card__time">20h</span>
+                                </div>
+                            </div>
+                        </header>
+
+                        <div class="card__body">
+                            <p class="card__text">Rekomendasi buku bacaan😍👌</p>
+                            <div class="card__gallery">
+                                <img src="images/fufufafa.jpg" alt="media_1" class="card__media">
+                                <img src="images/wowo.jpg" alt="media_1" class="card__media">
+                            </div>
+                        </div>
+
+                        <footer class="card__footer">
+                            <div class="card__actions">
+                                <button class="card__action-btn--like" aria-label="Suka"><svg><use href="#icon-heart" /></svg></button>
+                                <button class="card__action-btn--comment" aria-label="Balas"><svg><use href="#icon-message" /></svg></button>
+                                <button class="card__action-btn--repost" aria-label="Repost"><svg><use href="#icon-repost" /></svg></button>
+                                <button class="card__action-btn--share" aria-label="Bagikan"><svg><use href="#icon-share" /></svg></button>
+                            </div>
+                        </footer>
+                    </article>
+
+                    <article class="card">
+                        <header class="card__header">
+                            <div class="card__user-info">
+                                <div class="card__avatar">Avatar</div>
+                                <div class="card__meta">
+                                    <span class="card__username">Alifandra</span>
+                                    <span class="card__time">20h</span>
+                                </div>
+                            </div>
+                        </header>
+
+                        <div class="card__body">
+                            <p class="card__text">Rekomendasi buku bacaan😍👌</p>
+                            <div class="card__gallery">
+                                <img src="images/fufufafa.jpg" alt="media_1" class="card__media">
+                                <img src="images/wowo.jpg" alt="media_1" class="card__media">
+                            </div>
+                        </div>
+
+                        <footer class="card__footer">
+                            <div class="card__actions">
+                                <button class="card__action-btn--like" aria-label="Suka"><svg><use href="#icon-heart" /></svg></button>
+                                <button class="card__action-btn--comment" aria-label="Balas"><svg><use href="#icon-message" /></svg></button>
+                                <button class="card__action-btn--repost" aria-label="Repost"><svg><use href="#icon-repost" /></svg></button>
+                                <button class="card__action-btn--share" aria-label="Bagikan"><svg><use href="#icon-share" /></svg></button>
+                            </div>
+                        </footer>
+                    </article>
+
+                    <article class="card">
+                        <header class="card__header">
+                            <div class="card__user-info">
+                                <div class="card__avatar"></div>
+                                <div class="card__meta">
+                                    <span class="card__username">Alifandra</span>
+                                    <span class="card__time">20h</span>
+                                </div>
+                            </div>
+                        </header>
+
+                        <div class="card__body">
+                            <p class="card__text">Rekomendasi buku bacaan😍👌</p>
+                            <div class="card__gallery">
+                                <img src="images/fufufafa.jpg" alt="media_1" class="card__media">
+                                <img src="images/wowo.jpg" alt="media_1" class="card__media">
+                            </div>
+                        </div>
+
+                        <footer class="card__footer">
+                            <div class="card__actions">
+                                <button class="card__action-btn--like" aria-label="Suka"><svg><use href="#icon-heart" /></svg></button>
+                                <button class="card__action-btn--comment" aria-label="Balas"><svg><use href="#icon-message" /></svg></button>
+                                <button class="card__action-btn--repost" aria-label="Repost"><svg><use href="#icon-repost" /></svg></button>
+                                <button class="card__action-btn--share" aria-label="Bagikan"><svg><use href="#icon-share" /></svg></button>
+                            </div>
+                        </footer>
+                    </article>
+                </div> 
+            </div>
+        </main>
+        <button class="fab-button" aria-label="Buat utas"><svg class="fab-button__icon"><use href="#icon-compose" /></svg></button>
+    </div>
+</body>
+</html>
