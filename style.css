@@ -45,10 +45,10 @@ aside.feed {
 }
 
 .sidebar__logo {
-    width: 34px;
-    height: 42px;
+    width: 150px;
+    height: 40px;
     margin: 0 0 25px 8px;
-    background: url("Threads-logo-wordmark-black-2026.svg") left center / 192px auto no-repeat;
+    background: url("Threads-logo-wordmark-black-2026.svg") no-repeat;
     filter: invert(1);
 }
 
@@ -442,58 +442,4 @@ main.feed {
     stroke: currentColor;
     stroke-width: 1.8;
     stroke-linecap: round;
-}
-
-@media (max-width: 900px) {
-    aside.feed {
-        width: 210px;
-    }
-
-    main.feed {
-        --feed-column-width: min(620px, calc(100vw - 256px));
-        --feed-column-left: 230px;
-        width: var(--feed-column-width);
-        max-width: 620px;
-        margin-left: var(--feed-column-left);
-    }
-}
-
-@media (max-width: 700px) {
-    aside.feed {
-        display: none;
-    }
-
-    main.feed {
-        --feed-column-width: calc(100vw - 16px);
-        --feed-column-left: 0px;
-        width: var(--feed-column-width);
-        margin-left: 0;
-    }
-
-    .fab-button {
-        right: 16px;
-        bottom: 16px;
-    }
-}
-
-@media (max-width: 480px) {
-    .thread__compose {
-        padding-right: 78px;
-    }
-
-    .thread__compose-button {
-        right: 12px;
-    }
-
-    .card {
-        padding: 16px 12px 15px 60px;
-    }
-
-    .card__avatar {
-        left: 12px;
-    }
-
-    .card__gallery .card__media {
-        height: 180px;
-    }
 }
