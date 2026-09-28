@@ -47,7 +47,7 @@ aside.feed {
 .sidebar__logo {
     width: 150px;
     height: 40px;
-    margin: 0 0 25px 8px;
+    margin: 0 0 20px 8px;
     background: url("images/Threads-logo-wordmark-black-2026.svg") no-repeat;
     filter: invert(1);
 }
@@ -68,12 +68,16 @@ aside.feed {
 .sidebar__item--active,
 .sidebar__feeds-item {
     width: 180px;
-    height: 30px;
-    padding: 14px 12px;
+    min-height: 42px;
+    padding: 10px 12px;
+    margin-bottom: -12px;
+    position: relative;
+    isolation: isolate;
     border-radius: 10px;
     color: var(--text-secondary);
     font-size: 15px;
     font-weight: 500;
+    line-height: 21px;
     cursor: pointer;
     transition: background-color 0.15s ease, color 0.15s ease;
 }
@@ -81,31 +85,54 @@ aside.feed {
 .sidebar__item,
 .sidebar__item--active,
 .sidebar__feeds-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    display: block;
+    overflow: hidden;
 }
 
 .sidebar__item--active {
-    background: #292929;
     color: var(--text);
     font-weight: 600;
 }
 
 .sidebar__item:nth-child(4) {
-    margin-top: 20px;
+    margin-top: 16px;
 }
 
 .sidebar__item:hover,
 .sidebar__feeds-item:hover {
-    background: var(--surface-hover);
     color: var(--text);
+}
+
+.sidebar__item::before,
+.sidebar__item--active::before,
+.sidebar__feeds-item::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+    height: 30px;
+    z-index: -1;
+    border-radius: 10px;
+    background: transparent;
+    transform: translateY(-50%);
+    transition: background-color 0.15s ease;
+}
+
+.sidebar__item--active::before {
+    background: #292929;
+}
+
+.sidebar__item:hover::before,
+.sidebar__feeds-item:hover::before {
+    background: var(--surface-hover);
 }
 
 .sidebar__icon {
     width: 21px;
     height: 21px;
-    flex: 0 0 21px;
+    float: left;
+    margin-right: 12px;
     fill: none;
     stroke: currentColor;
     stroke-width: 1.8;
@@ -114,8 +141,8 @@ aside.feed {
 }
 
 .sidebar__feeds {
-    margin-top: 32px;
-    padding-top: 16px;
+    margin-top: 24px;
+    padding-top: 12px;
 }
 
 .sidebar__feeds-title {
@@ -137,30 +164,23 @@ main.feed {
     --feed-column-left: calc(240px + (100vw - 240px - var(--feed-column-width)) / 2);
     width: var(--feed-column-width);
     height: 100dvh;
-    min-height: 0;
     position: relative;
-    display: flex;
-    flex-direction: column;
     margin-left: var(--feed-column-left);
 }
 
 .feed__header {
     width: 100%;
     height: 66px;
-    flex: 0 0 66px;
-    position: sticky;
+    position: absolute;
     top: 0;
+    left: 0;
     z-index: 40;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px 12px;
-    background: rgba(16, 16, 16, 0.96);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    padding: 11px 20px 12px;
+    margin-top: 12px;
 }
 
 .feed__title {
+    display: inline-block;
     color: var(--text);
     font-size: 15px;
     font-weight: 700;
@@ -170,8 +190,9 @@ main.feed {
 .feed__menu {
     width: 32px;
     height: 32px;
-    display: grid;
-    place-items: center;
+    position: absolute;
+    top: 11px;
+    right: 20px;
     border: 0;
     border-radius: 50%;
     background: transparent;
@@ -186,6 +207,10 @@ main.feed {
 .feed__menu svg {
     width: 22px;
     height: 22px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     fill: none;
     stroke: currentColor;
     stroke-width: 1.8;
@@ -193,9 +218,11 @@ main.feed {
 
 .feed__panel {
     width: 100%;
-    flex: 1 1 auto;
-    min-height: 0;
-    position: relative;
+    position: absolute;
+    top: 66px;
+    right: 0;
+    bottom: 0;
+    left: 0;
     border: 1px solid var(--border);
     border-radius: 24px;
     background: var(--bg);
@@ -361,13 +388,17 @@ main.feed {
 
 .card__gallery {
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
+    overflow: hidden;
 }
 
 .card__gallery .card__media {
+    width: calc(50% - 5px);
     height: 240px;
+    float: left;
+}
+
+.card__gallery .card__media + .card__media {
+    margin-left: 10px;
 }
 
 .card__footer {
@@ -378,18 +409,16 @@ main.feed {
 .card__actions {
     width: 100%;
     height: 32px;
-    display: flex;
-    align-items: center;
-    gap: 13px;
+    line-height: 32px;
 }
 
 [class^="card__action-btn--"] {
     width: 30px;
     height: 30px;
     padding: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    display: inline-block;
+    margin-right: 9px;
+    vertical-align: middle;
     border: 0;
     background: transparent;
     color: #bdbdbd;
@@ -403,7 +432,7 @@ main.feed {
 [class^="card__action-btn--"] svg {
     width: 21px;
     height: 21px;
-    flex: 0 0 21px;
+    vertical-align: middle;
     fill: none;
     stroke: currentColor;
     stroke-width: 1.8;
@@ -418,9 +447,7 @@ main.feed {
     right: 24px;
     bottom: 17px;
     z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: block;
     border: 1px solid #303030;
     border-radius: 12px;
     background: #181818;
@@ -438,6 +465,10 @@ main.feed {
 .fab-button__icon {
     width: 24px;
     height: 24px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     fill: none;
     stroke: currentColor;
     stroke-width: 1.8;
